@@ -16,8 +16,6 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include <algorithm>
-#include <typeinfo>
 
 using namespace std;
 
@@ -37,45 +35,36 @@ int main()
 		map2[str] = i;
 	}
 
-	for (const auto& ele : map1)
-		cout << ele.first << ' ' << ele.second << ' ';
+	//for (const auto& ele : map1)
+	//	cout << ele.first << ' ' << ele.second << ' ';
 
-	cout << endl;
+	//cout << endl;
 
-	for (const auto& ele : map2)
-		cout << ele.first << ' ' << ele.second << ' ';
+	//for (const auto& ele : map2)
+	//	cout << ele.first << ' ' << ele.second << ' ';
 
-	cout << endl;
+	//cout << endl;
 
 	for (int i = 0; i < n; i++)
 	{
-		int a(0);
 		string str;
 		cin >> str;
+		bool isNumeric = true;
 
-		// stoi 자료형 확인
-		if (typeid(stoi(str)) == typeid(a))
+		for (int i = 0; i < str.length(); i++)
 		{
-			for (const auto& ele : map1)
+			if (isdigit(str[i]) == false)
 			{
-				if (stoi(str) == ele.first)
-				{
-					cout << ele.second << endl;
-					break;
-				}
+				isNumeric = false;
+				break;
 			}
 		}
+
+		if (isNumeric == true)
+			cout << map1[stoi(str)] << endl;
+
 		else
-		{
-			for (const auto& ele : map2)
-			{
-				if (str == ele.first)
-				{
-					cout << ele.second << endl;
-					break;
-				}
-			}
-		}
+			cout << map2[str] << endl;
 	}
 
 	return 0;
